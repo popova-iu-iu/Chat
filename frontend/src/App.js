@@ -1,30 +1,40 @@
-import React from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ErrorPage from "./components/pages/ErrorPage";
-import SignUpPage from "./components/pages/SignUpPage";
+import { useState, useCallback, createContext } from "react";
+import { Route, Routes } from "react-router-dom";
+import NotFoundPage from "./pages/NotFoundPage";
+import SignUpPage from "./pages/SignUpPage";
 import Layout from "./components/Layout";
-import LoginPage from "./components/pages/LoginPage";
+import LoginPage from "./pages/LoginPage";
+import MainPage from "./pages/MainPage";
+import PrivateRoute from "./components/PrivateRoute";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Layout />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        path: "login",
-        element: <LoginPage />,
-      },
-      {
-        path: "sign-up",
-        element: <SignUpPage />,
-      },
-    ],
-  },
-]);
+export const AuthContext = createContext(null);
 
-function App() {
-  return <RouterProvider router={router} />;
-}
+const App = () => {
+  const currentUser = JSON.parse(localStorage.getItem("user"));
+  const [user, setUser] = useState(false);
+  const logIn = useCallback((user) => {
+    localStorage.setItem("user", JSON.stringify(user));
+    setUser(user);
+  }, []);
+  const logOut = useCallback((user) => {
+    localStorage.removeItem("user");
+    setUser(null);
+  }, []);
+
+  return (
+    <>
+      <AuthContext.Provider value={{ user, logIn, logOut }}>
+        <Routes>
+          <Route element={<PrivateRoute />}>
+            <Route path="/" element={<MainPage />} />
+          </Route>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/sign-up" element={<SignUpPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </AuthContext.Provider>
+    </>
+  );
+};
 
 export default App;
