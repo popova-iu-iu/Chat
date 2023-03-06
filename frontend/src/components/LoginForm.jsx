@@ -1,16 +1,17 @@
-import { useContext, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { AuthContext } from "../App";
-import { useNavigate } from "react-router-dom";
+
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button, Form } from "react-bootstrap";
 import routes from "../routes";
 import axios from "axios";
+import useAuth from '../hooks/index.jsx'
 
 const LoginForm = () => {
-  const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
-  const { logIn } = useContext(AuthContext);
+  const location = useLocation();
+  const auth = useAuth();
+
 
   const formik = useFormik({
     initialValues: {
@@ -27,15 +28,17 @@ const LoginForm = () => {
         username: values.username,
         password: values.password,
       };
-
       try {
         const response = await axios.post(routes.loginPath(), { ...userData });
-        logIn({ ...response.data });
-        navigate("/");
-        console.log(response.data);
+        localStorage.setItem("userId", JSON.stringify(response.data));
+        auth.logIn();
+        console.log(location);
+        const {from} = location.state || {from: {pathname: "/"}}
+        console.log(from)
+        navigate(from)
       } catch (e) {
         const message = e.response.statusText;
-        console.log(message);
+        console.log(e);
       }
     },
   });

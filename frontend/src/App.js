@@ -1,29 +1,33 @@
-import { useState, useCallback, createContext } from "react";
+import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import NotFoundPage from "./pages/NotFoundPage";
 import SignUpPage from "./pages/SignUpPage";
-import Layout from "./components/Layout";
 import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import PrivateRoute from "./components/PrivateRoute";
 
-export const AuthContext = createContext(null);
+import AuthContext from "./contexts/index.jsx";
 
 const App = () => {
-  const currentUser = JSON.parse(localStorage.getItem("user"));
-  const [user, setUser] = useState(false);
-  const logIn = useCallback((user) => {
-    localStorage.setItem("user", JSON.stringify(user));
-    setUser(user);
-  }, []);
-  const logOut = useCallback((user) => {
-    localStorage.removeItem("user");
-    setUser(null);
-  }, []);
+  const AuthProvider = ({ children }) => {
+    const [loggedIn, setLoggetIn] = useState(false);
+
+    const logIn = () => setLoggetIn(true);
+    const logOut = () => {
+      localStorage.removeItem("userId");
+      setLoggetIn(false);
+    };
+
+    return (
+      <AuthContext.Provider value={{ loggedIn, logIn, logOut }}>
+        {children}
+      </AuthContext.Provider>
+    );
+  };
 
   return (
     <>
-      <AuthContext.Provider value={{ user, logIn, logOut }}>
+      <AuthProvider>
         <Routes>
           <Route element={<PrivateRoute />}>
             <Route path="/" element={<MainPage />} />
@@ -32,7 +36,7 @@ const App = () => {
           <Route path="/sign-up" element={<SignUpPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
-      </AuthContext.Provider>
+      </AuthProvider>
     </>
   );
 };
