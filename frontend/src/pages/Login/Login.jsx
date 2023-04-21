@@ -1,10 +1,12 @@
-import { Link, useNavigate } from "react-router-dom";
-import { Col, Row, Container, Card, Image } from "react-bootstrap";
-import LoginForm from "../../components/LoginForm";
-import Header from "../../components/Header";
-import image from "../../../src/assets/avatar.jpg";
+import React from "react";
+import { Container, Row, Col, Card, Image } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-const LoginPage = () => {
+
+import LoginForm from "./Components/LoginForm";
+import img from "../../assets/avatar.jpg";
+
+const Login = () => {
   return (
     <Container fluid className="h-100">
       <Row className="justify-content-center align-content-center h-100">
@@ -15,14 +17,14 @@ const LoginPage = () => {
                 className="col-12 d-flex align-items-center justify-content-center"
                 md={6}
               >
-                <Image className="rounded-circle" src={image} alt="Enter" />
+                <Image className="rounded-circle" src={img} alt="Enter" />
               </Col>
               <LoginForm />
             </Card.Body>
             <Card.Footer className="p-4">
               <div className="text-center">
-                <span className="px-1">Нет аккаунта? </span>
-                <Link to="/sign-up">Регистрация</Link>
+                <span className="px-1">Нет аккаунта?</span>
+                <Link to="/signup">Регистрация</Link>
               </div>
             </Card.Footer>
           </Card>
@@ -31,5 +33,4 @@ const LoginPage = () => {
     </Container>
   );
 };
-
-export default LoginPage;
+export default Login;

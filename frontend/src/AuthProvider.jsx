@@ -1,39 +1,30 @@
-import { useMemo, useState } from "react";
-import AuthContext from "./contexts/index";
+import { useEffect, useMemo, useState } from "react";
+import AuthContext from "./context/AuthContext";
 
 const AuthProvider = ({ children }) => {
-  const currentUser = JSON.parse(localStorage.getItem("user"));
-  const [user, setUser] = useState(
-    currentUser ? { username: currentUser.username } : null
-  );
+  const [loggedIn, setLoggedIn] = useState(!!localStorage.getItem("userId"));
 
-  const logIn = (userData) => {
-    localStorage.setItem("user", JSON.stringify(userData));
-    setUser({ username: userData.username });
-  };
+  const logIn = () => setLoggedIn(true);
 
   const logOut = () => {
-    localStorage.removeItem("user");
-    setUser(null);
-    console.log(user)
+    localStorage.removeItem("userId");
+    setLoggedIn(false);
   };
 
   const getAuthHeader = () => {
-    const userData = JSON.parse(localStorage.getItem("user"));
-    return userData?.token ? { Authorization: `Bearer ${userData.token}` } : {};
+    const userData = JSON.parse(localStorage.getItem("userId"));
+
+    return userData.token ? { Authorization: `Bearer ${userData.token}` } : {};
   };
 
-  const auth = useMemo(
-    () => ({
-      logIn,
-      logOut,
-      getAuthHeader,
-      user,
-    }),
-    [user]
-  );
+  const value = {
+    loggedIn,
+    logIn,
+    logOut,
+    getAuthHeader,
+  };
 
-  return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export default AuthProvider;
