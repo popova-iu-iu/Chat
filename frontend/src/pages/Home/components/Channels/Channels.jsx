@@ -85,7 +85,7 @@ const Channels = ({ handleOpen }) => {
   return (
     <Col className="col-4 col-md-2 border-end px-0 bg-light flex-column  d-flex">
       <div className="d-flex mt-1 justify-content-between mb-2 ps-4 pe-2 p-4">
-        <span>{t("channels.channels")}</span>
+        <b>{t("channels.channels")}</b>
         <Button
           onClick={handleAdd()}
           variant="link"
