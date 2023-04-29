@@ -52,6 +52,7 @@ const ru = {
 
     message: {
       input: "Введите сообщение...",
+      newMessage: "Новое сообщение",
 
       count: "{{ count }} сообщений",
       count_one: "{{count}} сообщение",
