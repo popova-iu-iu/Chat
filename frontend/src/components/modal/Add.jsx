@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
+import leoProfanity from "leo-profanity";
 
 import useChatApi from "../../hooks/useChatApi";
 import { selectors } from "../../store/channels";
@@ -40,19 +41,20 @@ const Add = ({ onHide }) => {
       .required(t("modal.required"))
       .min(3, t("modal.minMax"))
       .max(20, t("modal.minMax"))
-      .notOneOf(channelsNames, t('modal.uniq')),
+      .notOneOf(channelsNames, t("modal.uniq")),
   });
 
   const formik = useFormik({
     validationSchema,
     initialValues: { name: "" },
     onSubmit: ({ name }) => {
-      if (channelsNames.includes(name)) {
+      const cleanedMessage = leoProfanity.clean(name);
+      if (channelsNames.includes(cleanedMessage)) {
         return false;
       }
 
       if (!channelsNames.includes(name)) {
-        newChannel(name, handleSuccess);
+        newChannel(leoProfanity.clean(name), handleSuccess);
       }
 
       return true;

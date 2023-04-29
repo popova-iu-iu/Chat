@@ -3,6 +3,7 @@ import { Form, InputGroup, Button } from "react-bootstrap";
 import { ArrowRightSquare } from "react-bootstrap-icons";
 import { useFormik } from "formik";
 import { useTranslation } from "react-i18next";
+import leoProfanity from "leo-profanity";
 
 import useChatApi from "../../../../../../hooks/useChatApi";
 import { useSelector } from "react-redux";
@@ -20,7 +21,12 @@ const Footer = () => {
     initialValues: { message: "" },
     onSubmit: ({ message }, { resetForm }) => {
       if (message !== "") {
-        const data = { body: message, channelId: currentChannelId, username };
+        const cleanedMessage = leoProfanity.clean(message);
+        const data = {
+          body: cleanedMessage,
+          channelId: currentChannelId,
+          username,
+        };
 
         sendMessage(data);
 
