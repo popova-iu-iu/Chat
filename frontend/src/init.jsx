@@ -11,10 +11,20 @@ import App from "./App";
 import ru from "./locales/ru";
 import store from "./store";
 
+// const rollbarConfig = {
+//   accessToken: process.env.REACT_APP_ROLLBAR,
+//   environment: "production",
+// };
+
 const rollbarConfig = {
-  accessToken: process.env.REACT_APP_ROLLBAR,
-  environment: "production",
+  accessToken: "a11edf5824e94df1ad8256e1c4e3ad05",
+  environment: "testenv",
 };
+
+function TestError() {
+  const a = null;
+  return a.hello();
+}
 
 const init = async (socket) => {
   leoProfanity.add(leoProfanity.getDictionary("ru"));
@@ -34,6 +44,7 @@ const init = async (socket) => {
             <App socket={socket} />
           </I18nextProvider>
         </StoreProvider>
+        <TestError />
       </ErrorBoundary>
     </ProviderRollBar>
   );
