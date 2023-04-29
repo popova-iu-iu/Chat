@@ -84,6 +84,7 @@ const Add = ({ onHide }) => {
           <FormLabel className="visually-hidden" htmlFor="name">
             {t("modal.name")}
           </FormLabel>
+
           <FormControl.Feedback type="invalid">
             {errors.name}
           </FormControl.Feedback>
