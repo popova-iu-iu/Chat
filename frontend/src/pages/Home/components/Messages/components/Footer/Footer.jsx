@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { Form, InputGroup, Button } from "react-bootstrap";
 import { ArrowRightSquare } from "react-bootstrap-icons";
 import { useFormik } from "formik";
@@ -11,6 +11,8 @@ import { useSelector } from "react-redux";
 const Footer = () => {
   const { t } = useTranslation();
   const { sendMessage } = useChatApi();
+
+  const inputRef = useRef(null);
 
   const currentChannelId = useSelector(
     ({ channels }) => channels.currentChannelId
@@ -35,6 +37,10 @@ const Footer = () => {
     },
   });
 
+  useEffect(() => {
+    inputRef.current.focus();
+  }, [formik]);
+
   const { values, handleSubmit, handleChange } = formik;
 
   return (
@@ -46,9 +52,10 @@ const Footer = () => {
               className="border-0 p-0 ps-2"
               name="message"
               placeholder={t("message.input")}
-              aria-label="message"
+              aria-label={t("message.newMessage")}
               value={values.message}
               onChange={handleChange}
+              ref={inputRef}
             />
 
             <Button
