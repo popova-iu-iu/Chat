@@ -76,7 +76,6 @@ const Add = ({ onHide }) => {
             type="text"
             name="name"
             id="name"
-            placeholder={t("modal.channelName")}
             value={values.name}
             onChange={handleChange}
             ref={inputRef}
