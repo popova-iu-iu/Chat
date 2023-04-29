@@ -4,6 +4,7 @@ import { Modal, Form, Button, FormControl, FormLabel } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { toast } from "react-toastify";
 
 import useChatApi from "../../hooks/useChatApi";
 import { selectors } from "../../store/channels";
@@ -23,6 +24,12 @@ const Add = ({ onHide }) => {
     setShow(false);
     onHide();
   };
+  const notify = () => toast.success(t("channels.created"));
+
+  const handleSuccess = () => {
+    handleClose();
+    notify();
+  };
 
   useEffect(() => {
     inputRef.current.focus();
@@ -32,7 +39,8 @@ const Add = ({ onHide }) => {
     name: Yup.string()
       .required(t("modal.required"))
       .min(3, t("modal.minMax"))
-      .max(20, t("modal.minMax")),
+      .max(20, t("modal.minMax"))
+      .notOneOf(channelsNames, t('modal.uniq')),
   });
 
   const formik = useFormik({
@@ -44,7 +52,7 @@ const Add = ({ onHide }) => {
       }
 
       if (!channelsNames.includes(name)) {
-        newChannel(name, handleClose);
+        newChannel(name, handleSuccess);
       }
 
       return true;

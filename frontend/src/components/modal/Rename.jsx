@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
 import useChatApi from "../../hooks/useChatApi";
 import { selectors } from "../../store/channels";
@@ -26,6 +27,13 @@ const Rename = ({ onHide }) => {
     onHide();
   };
 
+  const notify = () => toast.success(t("channels.renameNotify"));
+
+  const handleSuccess = () => {
+    handleClose();
+    notify();
+  };
+
   useEffect(() => {
     inputRef.current.select();
   }, []);
@@ -46,7 +54,7 @@ const Rename = ({ onHide }) => {
       }
 
       if (!channelsNames.includes(name)) {
-        newNameChannel({ id, name }, handleClose);
+        newNameChannel({ id, name }, handleSuccess);
       }
 
       return true;

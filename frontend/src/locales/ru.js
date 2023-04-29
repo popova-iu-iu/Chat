@@ -34,6 +34,7 @@ const ru = {
       remove: "Удалить",
       sure: " Уверены?",
       rename: "Переименовать канал",
+      uniq: "Имя должно быть уникальным",
     },
 
     nav: {
@@ -44,6 +45,9 @@ const ru = {
       channels: "Каналы",
       rename: "Переименовать",
       remove: "Удалить",
+      created: "Канал создан",
+      delete: "Канал удален",
+      renameNotify: "Канал переименован",
     },
 
     message: {

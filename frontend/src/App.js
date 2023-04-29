@@ -5,6 +5,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 import Login from "./pages/Login/Login";
 import Home from "./pages/Home/Home";
@@ -48,6 +49,7 @@ const App = ({ socket }) => {
           </Routes>
         </div>
       </Router>
+      <ToastContainer />
     </AuthProvider>
   );
 };
