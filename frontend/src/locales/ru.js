@@ -17,7 +17,7 @@ const ru = {
       passwordConfirm: "Подтвердите пароль",
       required: "Обязательное поле",
       minMax: "От 3 до 20 символов",
-      passwordLength: "Минимум 6 символов",
+      passwordLength: "Не менее 6 символов",
       mustMatch: "Пароли должны совпадать",
       exist: "Пользователь уже существует",
       submit: "Зарегистрироваться",
