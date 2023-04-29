@@ -1,17 +1,25 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 const MessagesList = ({ messages }) => {
-  return (
-     <div className="text-break mb-2">
-      <b>user</b>: msg
-    </div>)
-   
+  const messageRef = useRef(null);
 
+  const lastMessage = messages[messages.length - 1];
+  useEffect(() => {
+    if (lastMessage) {
+      messageRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+
+  return messages.map(({ body, username, id }) => (
+    <div className="text-break mb-2" key={id} ref={messageRef}>
+      <b>{username}</b>: {body}
+    </div>
+  ));
 };
 
-const Body = () => (
+const Body = ({ messages }) => (
   <div id="messages-box" className="chat-messages overflow-auto px-5">
-    <MessagesList  />
+    <MessagesList messages={messages} />
   </div>
 );
 

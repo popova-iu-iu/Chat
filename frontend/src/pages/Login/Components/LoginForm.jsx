@@ -1,21 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { Form, FloatingLabel, FormControl, Button } from "react-bootstrap";
 import axios from "axios";
 import { useFormik } from "formik";
-import { Form, FloatingLabel, FormControl, Button } from "react-bootstrap";
 import * as Yup from "yup";
+import { useTranslation } from "react-i18next";
 
 import routes from "../../../routes/routes";
 import useAuth from "../../../hooks/useAuth";
 
 const LoginForm = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const auth = useAuth();
 
+  const [authFailed, setAuthFailed] = useState(false);
+  const authMessage = t("login.authFailed");
+
   const validationSchema = Yup.object().shape({
-    username: Yup.string().required("Обязательное поле"),
-    password: Yup.string().required("Обязательное поле"),
+    username: Yup.string().required(t("registration.required")),
+    password: Yup.string().required(t("registration.required")),
   });
 
   const formik = useFormik({
@@ -25,18 +30,19 @@ const LoginForm = () => {
       password: "",
     },
     onSubmit: async (values) => {
-      const userData = {
-        username: values.username,
-        password: values.password,
-      };
       try {
         const response = await axios.post(routes.loginPath(), values);
         localStorage.setItem("userId", JSON.stringify(response.data));
         auth.logIn();
         const { from } = location.state || { from: { pathname: "/" } };
         navigate(from);
-      } catch (e) {
-        console.log(e);
+      } catch (err) {
+        if (err.isAxiosError && err.response.status === 401) {
+          setAuthFailed(true);
+          return false;
+        }
+
+        throw err;
       }
     },
   });
@@ -47,13 +53,20 @@ const LoginForm = () => {
     >
       <h1 className="text-center mb-4">Войти</h1>
 
-      <FloatingLabel label="Ваш ник" controlId="username" className="mb-3">
+      <FloatingLabel
+        label={t("login.name")}
+        controlId="username"
+        className="mb-3"
+      >
         <Form.Control
           name="username"
           autoComplete="username"
           placeholder="username"
           onChange={formik.handleChange}
           value={formik.values.username}
+          isInvalid={
+            (formik.touched.username && !!formik.errors.username) || authFailed
+          }
         />
         <Form.Text className="text-danger">
           {formik.errors.username && formik.touched.username
@@ -62,7 +75,11 @@ const LoginForm = () => {
         </Form.Text>
       </FloatingLabel>
 
-      <FloatingLabel label="Пароль" controlId="password" className="mb-4">
+      <FloatingLabel
+        label={t("login.password")}
+        controlId="password"
+        className="mb-4"
+      >
         <FormControl
           type="password"
           name="password"
@@ -70,17 +87,18 @@ const LoginForm = () => {
           autoComplete="current-password"
           onChange={formik.handleChange}
           value={formik.values.password}
+          isInvalid={
+            (formik.touched.username && !!formik.errors.username) || authFailed
+          }
         />
 
-        <Form.Text className="text-danger">
-          {formik.errors.password && formik.touched.password
-            ? formik.errors.password
-            : null}
-        </Form.Text>
+        <FormControl.Feedback type="invalid" tooltip>
+          {formik.errors.password ?? authMessage}
+        </FormControl.Feedback>
       </FloatingLabel>
 
       <Button type="submit" variant="outline-primary" className="w-100 mb-3">
-        Войти
+        {t("login.enter")}
       </Button>
     </Form>
   );

@@ -1,19 +1,19 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Form, InputGroup, Button } from "react-bootstrap";
 import { ArrowRightSquare } from "react-bootstrap-icons";
 import { useFormik } from "formik";
+import { useTranslation } from "react-i18next";
 
 import useChatApi from "../../../../../../hooks/useChatApi";
 import { useSelector } from "react-redux";
 
 const Footer = () => {
+  const { t } = useTranslation();
   const { sendMessage } = useChatApi();
 
   const currentChannelId = useSelector(
     ({ channels }) => channels.currentChannelId
   );
-
-  const msg = useSelector(({ messages }) => messages);
 
   const { username } = JSON.parse(localStorage.getItem("userId"));
   const formik = useFormik({
@@ -29,10 +29,6 @@ const Footer = () => {
     },
   });
 
-  // useEffect(() => {
-  //     inputRef.current.focus()
-  // },[formik])
-
   const { values, handleSubmit, handleChange } = formik;
 
   return (
@@ -43,7 +39,7 @@ const Footer = () => {
             <Form.Control
               className="border-0 p-0 ps-2"
               name="message"
-              placeholder="message"
+              placeholder={t("message.input")}
               aria-label="message"
               value={values.message}
               onChange={handleChange}

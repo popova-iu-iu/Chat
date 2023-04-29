@@ -1,19 +1,36 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import Header from "./components/Header/Header";
 import Body from "./components/Body/Body";
 import Footer from "./components/Footer/Footer";
-import { useSelector } from "react-redux";
+
+import { selectors } from "../../../../store/messages";
+import { selectors as channelsSelectors } from "../../../../store/channels";
 
 const Messages = () => {
-  const  msg  = useSelector((state) => state.messages);
-  console.log(msg);
+  const messages = Object.values(useSelector(selectors.selectAll));
+
+  const currentChannelId = useSelector(
+    (state) => state.channels.currentChannelId
+  );
+
+  const messagesInChat = messages.filter(
+    ({ channelId }) => channelId === currentChannelId
+  );
+
+  const currentChannel = useSelector((state) =>
+    channelsSelectors.selectById(state, currentChannelId)
+  );
 
   return (
     <div className="col p-0 h-100">
       <div className="d-flex flex-column h-100">
-        <Header />
-        <Body />
+        <Header
+          channelName={currentChannel?.name}
+          count={messagesInChat.length}
+        />
+        <Body messages={messagesInChat} />
         <Footer />
       </div>
     </div>
