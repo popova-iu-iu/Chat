@@ -33,7 +33,8 @@ const Channels = ({ handleOpen }) => {
               onClick={() => dispatch(setCurrentChannelId(id))}
               className={`w-100 rounded-0 text-start ${btnClasses}`}
             >
-              <span>#</span>
+              #
+              {' '}
               {name}
             </button>
           </li>
