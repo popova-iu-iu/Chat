@@ -33,9 +33,7 @@ const Channels = ({ handleOpen }) => {
               onClick={() => dispatch(setCurrentChannelId(id))}
               className={`w-100 rounded-0 text-start ${btnClasses}`}
             >
-              #
-              {' '}
-              {name}
+              # {name}
             </button>
           </li>
         );
@@ -60,7 +58,7 @@ const Channels = ({ handleOpen }) => {
                 variant={variant}
                 className="flex-grow-0 text-end"
               >
-                <span className="visually-hidden">text</span>
+                <span className="visually-hidden">{t("channels.manage")}</span>
               </Dropdown.Toggle>
 
               <Dropdown.Menu>

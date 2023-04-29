@@ -48,6 +48,7 @@ const ru = {
       created: "Канал создан",
       delete: "Канал удален",
       renameNotify: "Канал переименован",
+      manage: "Управление каналом",
     },
 
     message: {
