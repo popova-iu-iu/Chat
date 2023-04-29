@@ -1,8 +1,8 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from '@reduxjs/toolkit';
 
-import channelReducer from "./channels";
-import messagesReducer from "./messages";
-import modalReducer from "./modal";
+import channelReducer from './channels';
+import messagesReducer from './messages';
+import modalReducer from './modal';
 
 export default configureStore({
   reducer: {

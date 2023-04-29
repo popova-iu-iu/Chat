@@ -1,30 +1,43 @@
+# Линтер подключаем именно в папку, созданную create-react-app
+# Все зависимости линтера должны быть установлены на этом уровне,
+# а не в корне проекта
+# Не забудьте удалить ключ eslintConfig из package.json,
+# автоматический созданный при запуске CRA
 env:
   browser: true
   es2021: true
+
 extends:
+  - airbnb
   - plugin:react/recommended
-  - eslint:recommended
-  - react-app
+  - plugin:functional/recommended
+  - plugin:react-hooks/recommended
+
 parserOptions:
   ecmaFeatures:
     jsx: true
   ecmaVersion: latest
   sourceType: module
+
 plugins:
   - react
-rules: {
-  react/jsx-filename-extension: [0, { "extensions": [".js", ".jsx"] }],
-  react/prop-types: 0,
-  import/extensions: 0,
-  import/no-unresolved: 0,
-  # https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/function-component-definition.md
-  react/function-component-definition: 0,
-  no-param-reassign: 0,
-  import/prefer-default-export: 1,
-  consistent-return: 0,
-  react/jsx-no-useless-fragment: 0,
-  react/jsx-props-no-spreading: 1,
-  react-hooks/exhaustive-deps: 0,
-  no-trailing-spaces: 1,
-  object-curly-newline: 1
-}
+  - functional
+
+rules:
+  import/extensions: 0
+  import/no-unresolved: 0
+  react/prop-types: 0
+  no-console: 0
+  react/react-in-jsx-scope: 0
+  functional/no-conditional-statement: 0
+  functional/no-expression-statement: 0
+  functional/immutable-data: 0
+  functional/functional-parameters: 0
+  functional/no-try-statement: 0
+  functional/no-throw-statement: 0
+  no-param-reassign: 0
+  no-underscore-dangle: [2, { 'allow': ['__filename', '__dirname'] }]
+  react/function-component-definition:
+    [2, { 'namedComponents': 'arrow-function' }]
+  testing-library/no-debug: 0
+  react/jsx-filename-extension: [1, { 'extensions': ['.js', '.jsx'] }]
