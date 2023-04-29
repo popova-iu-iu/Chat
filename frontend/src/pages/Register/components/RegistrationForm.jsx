@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import { Form, FloatingLabel, FormControl, Button } from "react-bootstrap";
 import * as Yup from "yup";
 import { useTranslation } from "react-i18next";
+import { useRollbar } from "@rollbar/react";
 
 import routes from "../../../routes/routes";
 import useAuth from "../../../hooks/useAuth";
@@ -12,6 +13,8 @@ import useAuth from "../../../hooks/useAuth";
 const RegistrationForm = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+
+  const rollbar = useRollbar();
 
   const auth = useAuth();
 
@@ -51,6 +54,7 @@ const RegistrationForm = () => {
         if (err.isAxiosError && err.response.status === 401) {
           inputRef.current.select();
           setAuthFailed(true);
+          rollbar.err(err);
 
           return false;
         }
@@ -59,6 +63,7 @@ const RegistrationForm = () => {
           inputRef.current.select();
           setAuthFailed(true);
           setExistingUser(true);
+          rollbar.err(err);
 
           return false;
         }
