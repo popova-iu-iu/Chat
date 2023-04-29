@@ -16,8 +16,6 @@ const rollbarConfig = {
   environment: "production",
 };
 
-
-
 const init = async (socket) => {
   leoProfanity.add(leoProfanity.getDictionary("ru"));
 
@@ -29,14 +27,14 @@ const init = async (socket) => {
   });
 
   const vdom = (
-     <ProviderRollBar config={rollbarConfig}>
-      <ErrorBoundary errorMessage="Error in React render">
-    <StoreProvider store={store}>
-      <I18nextProvider i18n={i18n}>
-        <App socket={socket} />
-      </I18nextProvider>
-    </StoreProvider>
-    </ErrorBoundary>
+    <ProviderRollBar config={rollbarConfig}>
+      <ErrorBoundary>
+        <StoreProvider store={store}>
+          <I18nextProvider i18n={i18n}>
+            <App socket={socket} />
+          </I18nextProvider>
+        </StoreProvider>
+      </ErrorBoundary>
     </ProviderRollBar>
   );
 
