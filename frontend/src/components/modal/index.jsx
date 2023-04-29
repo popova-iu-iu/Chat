@@ -14,13 +14,19 @@ const ModalComponent = (props) => {
   };
 
   const Component = modal[type];
+  // eslint-disable-next-line react/jsx-props-no-spreading
   return <Component {...props} />;
 };
 
 const Modal = (props) => {
   const type = useSelector(({ modal }) => modal.type);
 
-  return <>{type && <ModalComponent type={type} {...props} />}</>;
+  return (
+    <>
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+      {type && <ModalComponent type={type} {...props} />}
+    </>
+  );
 };
 
 export default Modal;

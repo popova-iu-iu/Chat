@@ -24,7 +24,10 @@ const AuthProvider = ({ children }) => {
     getAuthHeader,
   };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    // eslint-disable-next-line react/jsx-no-constructed-context-values
+    <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;

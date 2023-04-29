@@ -5,6 +5,8 @@ import Header from "./components/Header/Header";
 import Body from "./components/Body/Body";
 import Footer from "./components/Footer/Footer";
 
+/* eslint  no-shadow: 0 */
+
 import { selectors } from "../../../../store/messages";
 import { selectors as channelsSelectors } from "../../../../store/channels";
 
