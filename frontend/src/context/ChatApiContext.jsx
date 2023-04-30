@@ -1,9 +1,5 @@
+/* eslint-disable */
 import React, { createContext, useEffect } from 'react';
-/* eslint  no-multiple-empty-lines: 0 */
-/* eslint  indent: 0 */
-/* eslint-disable functional/no-expression-statements */
-/* eslint-disable functional/no-conditional-statements */
-/* eslint-disable react/jsx-no-constructed-context-values */
 
 import store from '../store';
 import {

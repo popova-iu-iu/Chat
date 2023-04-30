@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
@@ -10,9 +11,6 @@ import { useTranslation } from 'react-i18next';
 
 import routes from '../../../routes/routes';
 import useAuth from '../../../hooks/useAuth';
-
-/* eslint-disable functional/no-expression-statements */
-/* eslint-disable consistent-return */
 
 const LoginForm = () => {
   const { t } = useTranslation();

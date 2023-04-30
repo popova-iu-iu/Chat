@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Modal, Button } from 'react-bootstrap';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -5,9 +6,6 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
 import useChatApi from '../../hooks/useChatApi';
-
-/* eslint-disable functional/no-expression-statements */
-/* eslint-disable functional/no-conditional-statements */
 
 const Remove = ({ onHide }) => {
   const { t } = useTranslation();

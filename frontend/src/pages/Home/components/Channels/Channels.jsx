@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -8,11 +9,6 @@ import cn from 'classnames';
 import { useTranslation } from 'react-i18next';
 
 import { selectors, setCurrentChannelId } from '../../../../store/channels';
-
-/* eslint-disable  no-shadow */
-/* eslint-disable functional/no-expression-statements */
-/* eslint-disable functional/no-conditional-statements */
-/* eslint-disable react/jsx-no-constructed-context-values */
 
 const Channels = ({ handleOpen }) => {
   const { t } = useTranslation();

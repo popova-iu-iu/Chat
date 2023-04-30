@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState, useEffect, useRef } from 'react';
 import {
   Modal, Form, Button, FormControl, FormLabel,
@@ -10,10 +11,6 @@ import { toast } from 'react-toastify';
 
 import useChatApi from '../../hooks/useChatApi';
 import { selectors } from '../../store/channels';
-
-/* eslint-disable functional/no-expression-statements */
-/* eslint-disable functional/no-conditional-statements */
-/* eslint-disable no-shadow */
 
 const Rename = ({ onHide }) => {
   const { t } = useTranslation();

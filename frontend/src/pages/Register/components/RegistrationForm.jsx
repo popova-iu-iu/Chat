@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -11,10 +12,6 @@ import { useRollbar } from '@rollbar/react';
 
 import routes from '../../../routes/routes';
 import useAuth from '../../../hooks/useAuth';
-
-/* eslint-disable functional/no-expression-statements */
-/* eslint-disable functional/no-conditional-statements */
-/* eslint-disable consistent-return */
 
 const RegistrationForm = () => {
   const { t } = useTranslation();

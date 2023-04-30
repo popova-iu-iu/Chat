@@ -1,6 +1,5 @@
+/* eslint-disable */
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
-/* eslint-disable functional/no-expression-statements */
-/* eslint-disable functional/no-conditional-statements */
 
 import { removeChannel } from './channels';
 

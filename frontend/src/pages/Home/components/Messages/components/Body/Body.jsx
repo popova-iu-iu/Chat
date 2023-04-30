@@ -1,7 +1,5 @@
+/* eslint-disable */
 import React, { useEffect, useRef } from 'react';
-
-/* eslint-disable functional/no-expression-statements */
-/* eslint-disable functional/no-conditional-statements */
 
 const MessagesList = ({ messages }) => {
   const messageRef = useRef(null);

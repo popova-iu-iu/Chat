@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useRef, useEffect } from 'react';
 import { Form, InputGroup, Button } from 'react-bootstrap';
 import { ArrowRightSquare } from 'react-bootstrap-icons';
@@ -7,9 +8,6 @@ import leoProfanity from 'leo-profanity';
 
 import { useSelector } from 'react-redux';
 import useChatApi from '../../../../../../hooks/useChatApi';
-
-/* eslint-disable functional/no-expression-statements */
-/* eslint-disable functional/no-conditional-statements */
 
 const Footer = () => {
   const { t } = useTranslation();

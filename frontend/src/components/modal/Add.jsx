@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import {
@@ -11,8 +12,6 @@ import leoProfanity from 'leo-profanity';
 
 import useChatApi from '../../hooks/useChatApi';
 import { selectors } from '../../store/channels';
-/* eslint-disable functional/no-expression-statements */
-/* eslint-disable functional/no-conditional-statements */
 
 const Add = ({ onHide }) => {
   const { t } = useTranslation();

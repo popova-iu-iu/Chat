@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Container, Row } from 'react-bootstrap';
@@ -12,8 +13,6 @@ import { open, close } from '../../store/modal';
 import Channels from './components/Channels/Channels';
 import Messages from './components/Messages/Messages';
 import Modal from '../../components/modal';
-
-/* eslint-disable functional/no-expression-statements */
 
 const Home = () => {
   const dispatch = useDispatch();

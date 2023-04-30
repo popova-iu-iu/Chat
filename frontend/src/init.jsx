@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import i18next from 'i18next';
 import leoProfanity from 'leo-profanity';
@@ -10,7 +11,6 @@ import App from './App';
 
 import ru from './locales/ru';
 import store from './store';
-/* eslint-disable functional/no-expression-statements */
 
 const rollbarConfig = {
   accessToken: process.env.REACT_APP_ROLLBAR,

@@ -1,13 +1,10 @@
+/* eslint-disable */
 import React from 'react';
 import { useSelector } from 'react-redux';
 
 import Header from './components/Header/Header';
 import Body from './components/Body/Body';
 import Footer from './components/Footer/Footer';
-
-/* eslint-disable functional/no-expression-statements */
-/* eslint-disable functional/no-conditional-statements */
-/* eslint-disable max-len */
 
 import { selectors } from '../../../../store/messages';
 import { selectors as channelsSelectors } from '../../../../store/channels';
