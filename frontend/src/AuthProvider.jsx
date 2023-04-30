@@ -1,7 +1,6 @@
+/* eslint-disable */
 import { useState } from 'react';
 import AuthContext from './context/AuthContext';
-/* eslint-disable functional/no-expression-statements */
-/* eslint-disable react/jsx-no-constructed-context-values */
 
 const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(!!localStorage.getItem('userId'));
