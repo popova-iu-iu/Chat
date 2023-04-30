@@ -1,5 +1,7 @@
+import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
+/* eslint-disable functional/no-expression-statements */
+/* eslint-disable functional/no-conditional-statements */
 /* eslint-disable no-param-reassign */
-import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 
 const channelsAdapter = createEntityAdapter();
 
@@ -9,7 +11,7 @@ const initialState = channelsAdapter.getInitialState({
 });
 
 const channelsSlice = createSlice({
-  name: "channels",
+  name: 'channels',
   initialState,
   reducers: {
     addChannel: channelsAdapter.addOne,
@@ -38,7 +40,7 @@ export const {
 } = channelsSlice.actions;
 
 export const selectors = channelsAdapter.getSelectors(
-  (state) => state.channels
+  (state) => state.channels,
 );
 
 export default channelsSlice.reducer;

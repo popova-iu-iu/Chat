@@ -1,29 +1,30 @@
-import React from "react";
-import i18next from "i18next";
-import leoProfanity from "leo-profanity";
+import React from 'react';
+import i18next from 'i18next';
+import leoProfanity from 'leo-profanity';
 
-import { I18nextProvider, initReactI18next } from "react-i18next";
-import { Provider as StoreProvider } from "react-redux";
-import { Provider as ProviderRollBar, ErrorBoundary } from "@rollbar/react";
+import { I18nextProvider, initReactI18next } from 'react-i18next';
+import { Provider as StoreProvider } from 'react-redux';
+import { Provider as ProviderRollBar, ErrorBoundary } from '@rollbar/react';
 
-import App from "./App";
+import App from './App';
 
-import ru from "./locales/ru";
-import store from "./store";
+import ru from './locales/ru';
+import store from './store';
+/* eslint-disable functional/no-expression-statements */
 
 const rollbarConfig = {
   accessToken: process.env.REACT_APP_ROLLBAR,
-  environment: "production",
+  environment: 'production',
 };
 
 const init = async (socket) => {
-  leoProfanity.add(leoProfanity.getDictionary("ru"));
+  leoProfanity.add(leoProfanity.getDictionary('ru'));
 
   const i18n = i18next.createInstance();
 
   await i18n.use(initReactI18next).init({
     resources: { ru },
-    fallbackLng: "ru",
+    fallbackLng: 'ru',
   });
 
   const vdom = (

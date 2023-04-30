@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 import init from './init';
+/* eslint-disable functional/no-expression-statements */
 
 const app = async () => {
   const socket = io();

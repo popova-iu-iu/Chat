@@ -1,17 +1,17 @@
-import React from "react";
-import { Container, Navbar, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import React from 'react';
+import { Container, Navbar, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
-import useAuth from "../../hooks/useAuth";
-import routes from "../../routes/routes";
+import useAuth from '../../hooks/useAuth';
+import routes from '../../routes/routes';
 
 const LogOut = () => {
   const { t } = useTranslation();
   const auth = useAuth();
 
   return auth.loggedIn ? (
-    <Button onClick={auth.logOut}>{t("nav.exit")}</Button>
+    <Button onClick={auth.logOut}>{t('nav.exit')}</Button>
   ) : null;
 };
 

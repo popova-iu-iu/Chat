@@ -1,18 +1,20 @@
-import { useState } from "react";
-import AuthContext from "./context/AuthContext";
+import { useState } from 'react';
+import AuthContext from './context/AuthContext';
+/* eslint-disable functional/no-expression-statements */
+/* eslint-disable react/jsx-no-constructed-context-values */
 
 const AuthProvider = ({ children }) => {
-  const [loggedIn, setLoggedIn] = useState(!!localStorage.getItem("userId"));
+  const [loggedIn, setLoggedIn] = useState(!!localStorage.getItem('userId'));
 
   const logIn = () => setLoggedIn(true);
 
   const logOut = () => {
-    localStorage.removeItem("userId");
+    localStorage.removeItem('userId');
     setLoggedIn(false);
   };
 
   const getAuthHeader = () => {
-    const userData = JSON.parse(localStorage.getItem("userId"));
+    const userData = JSON.parse(localStorage.getItem('userId'));
 
     return userData.token ? { Authorization: `Bearer ${userData.token}` } : {};
   };
@@ -25,7 +27,6 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    // eslint-disable-next-line react/jsx-no-constructed-context-values
     <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
   );
 };

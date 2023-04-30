@@ -1,17 +1,19 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { Container, Row } from "react-bootstrap";
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Container, Row } from 'react-bootstrap';
 
-import useAuth from "../../hooks/useAuth";
-import fetchData from "../../api/fetchData";
+import useAuth from '../../hooks/useAuth';
+import fetchData from '../../api/fetchData';
 
-import { addMessages } from "../../store/messages";
-import { addChannels, setCurrentChannelId } from "../../store/channels";
-import { open, close } from "../../store/modal";
+import { addMessages } from '../../store/messages';
+import { addChannels, setCurrentChannelId } from '../../store/channels';
+import { open, close } from '../../store/modal';
 
-import Channels from "./components/Channels/Channels";
-import Messages from "./components/Messages/Messages";
-import Modal from "../../components/modal";
+import Channels from './components/Channels/Channels';
+import Messages from './components/Messages/Messages';
+import Modal from '../../components/modal';
+
+/* eslint-disable functional/no-expression-statements */
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -20,11 +22,9 @@ const Home = () => {
   const handleClose = () => {
     dispatch(close());
   };
-  const handleOpen =
-    (type, id = null) =>
-    () => {
-      dispatch(open({ type, id }));
-    };
+  const handleOpen = (type, id = null) => () => {
+    dispatch(open({ type, id }));
+  };
   useEffect(() => {
     fetchData(auth.getAuthHeader).then((data) => {
       const { channels, currentChannelId, messages } = data;

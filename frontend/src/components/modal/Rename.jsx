@@ -1,13 +1,19 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Modal, Form, Button, FormControl, FormLabel } from "react-bootstrap";
-import { useSelector } from "react-redux";
-import * as Yup from "yup";
-import { useFormik } from "formik";
-import { useTranslation } from "react-i18next";
-import { toast } from "react-toastify";
+import React, { useState, useEffect, useRef } from 'react';
+import {
+  Modal, Form, Button, FormControl, FormLabel,
+} from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import * as Yup from 'yup';
+import { useFormik } from 'formik';
+import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
-import useChatApi from "../../hooks/useChatApi";
-import { selectors } from "../../store/channels";
+import useChatApi from '../../hooks/useChatApi';
+import { selectors } from '../../store/channels';
+
+/* eslint-disable functional/no-expression-statements */
+/* eslint-disable functional/no-conditional-statements */
+/* eslint-disable no-shadow */
 
 const Rename = ({ onHide }) => {
   const { t } = useTranslation();
@@ -27,7 +33,7 @@ const Rename = ({ onHide }) => {
     onHide();
   };
 
-  const notify = () => toast.success(t("channels.renameNotify"));
+  const notify = () => toast.success(t('channels.renameNotify'));
 
   const handleSuccess = () => {
     handleClose();
@@ -40,9 +46,9 @@ const Rename = ({ onHide }) => {
 
   const validationSchema = Yup.object().shape({
     name: Yup.string()
-      .required(t("modal.required"))
-      .min(3, t("modal.minMax"))
-      .max(20, t("modal.minMax")),
+      .required(t('modal.required'))
+      .min(3, t('modal.minMax'))
+      .max(20, t('modal.minMax')),
   });
 
   const formik = useFormik({
@@ -61,25 +67,27 @@ const Rename = ({ onHide }) => {
     },
   });
 
-  const { touched, errors, values, handleSubmit, handleChange } = formik;
+  const {
+    touched, errors, values, handleSubmit, handleChange,
+  } = formik;
 
   return (
     <Modal show={show} onHide={handleClose} centered>
       <Modal.Header closeButton>
-        <Modal.Title>{t("modal.rename")}</Modal.Title>
+        <Modal.Title>{t('modal.rename')}</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
           <FormLabel className="visually-hidden" htmlFor="name">
-            {t("modal.name")}
+            {t('modal.name')}
           </FormLabel>
           <FormControl
             className="mb-2"
             type="text"
             name="name"
             id="name"
-            placeholder={t("modal.channelName")}
+            placeholder={t('modal.channelName')}
             ref={inputRef}
             autoComplete="current-password"
             value={values.name}
@@ -93,11 +101,11 @@ const Rename = ({ onHide }) => {
 
           <div className="d-flex justify-content-end">
             <Button variant="secondary" className="me-2" onClick={handleClose}>
-              {t("modal.cancel")}
+              {t('modal.cancel')}
             </Button>
 
             <Button type="submit" variant="primary">
-              {t("modal.submit")}
+              {t('modal.submit')}
             </Button>
           </div>
         </Form>

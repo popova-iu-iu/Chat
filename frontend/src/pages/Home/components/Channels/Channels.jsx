@@ -1,12 +1,18 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Col, Button, ButtonGroup, Dropdown } from "react-bootstrap";
-import { PlusSquare } from "react-bootstrap-icons";
-import cn from "classnames";
-import { useTranslation } from "react-i18next";
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  Col, Button, ButtonGroup, Dropdown,
+} from 'react-bootstrap';
+import { PlusSquare } from 'react-bootstrap-icons';
+import cn from 'classnames';
+import { useTranslation } from 'react-i18next';
 
-import { selectors } from "../../../../store/channels";
-import { setCurrentChannelId } from "../../../../store/channels";
+import { selectors, setCurrentChannelId } from '../../../../store/channels';
+
+/* eslint-disable  no-shadow */
+/* eslint-disable functional/no-expression-statements */
+/* eslint-disable functional/no-conditional-statements */
+/* eslint-disable react/jsx-no-constructed-context-values */
 
 const Channels = ({ handleOpen }) => {
   const { t } = useTranslation();
@@ -17,23 +23,26 @@ const Channels = ({ handleOpen }) => {
 
   const channelsList = () => {
     const elements = channels.map(({ name, removable, id }) => {
-      const btnClasses = cn("btn", {
-        "btn-secondary": id === currentChannelId,
+      const btnClasses = cn('btn', {
+        'btn-secondary': id === currentChannelId,
       });
 
-      const variant = id === currentChannelId ? "secondary" : "light";
+      const variant = id === currentChannelId ? 'secondary' : 'light';
 
-      const handleRename = (id) => handleOpen("renaming", id);
-      const handleRemove = (id) => handleOpen("removing", id);
+      const handleRename = (id) => handleOpen('renaming', id);
+      const handleRemove = (id) => handleOpen('removing', id);
 
       if (!removable) {
         return (
           <li className="nav-item w-100" key={id}>
             <button
+              type="button"
               onClick={() => dispatch(setCurrentChannelId(id))}
               className={`w-100 rounded-0 text-start ${btnClasses}`}
             >
-              # {name}
+              #
+              {' '}
+              {name}
             </button>
           </li>
         );
@@ -50,7 +59,9 @@ const Channels = ({ handleOpen }) => {
                   dispatch(setCurrentChannelId(id));
                 }}
               >
-                # {name}
+                #
+                {' '}
+                {name}
               </Button>
 
               <Dropdown.Toggle
@@ -58,15 +69,15 @@ const Channels = ({ handleOpen }) => {
                 variant={variant}
                 className="flex-grow-0 text-end"
               >
-                <span className="visually-hidden">{t("channels.manage")}</span>
+                <span className="visually-hidden">{t('channels.manage')}</span>
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
                 <Dropdown.Item onClick={handleRemove(id)}>
-                  {t("channels.remove")}
+                  {t('channels.remove')}
                 </Dropdown.Item>
                 <Dropdown.Item onClick={handleRename(id)}>
-                  {t("channels.rename")}
+                  {t('channels.rename')}
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
@@ -78,12 +89,12 @@ const Channels = ({ handleOpen }) => {
     return elements;
   };
 
-  const handleAdd = () => handleOpen("adding");
+  const handleAdd = () => handleOpen('adding');
 
   return (
     <Col className="col-4 col-md-2 border-end px-0 bg-light flex-column  d-flex">
       <div className="d-flex mt-1 justify-content-between mb-2 ps-4 pe-2 p-4">
-        <b>{t("channels.channels")}</b>
+        <b>{t('channels.channels')}</b>
         <Button
           onClick={handleAdd()}
           variant="link"

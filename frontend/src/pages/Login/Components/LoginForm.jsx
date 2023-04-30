@@ -1,13 +1,18 @@
-import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import { Form, FloatingLabel, FormControl, Button } from "react-bootstrap";
-import axios from "axios";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import { useTranslation } from "react-i18next";
+import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import {
+  Form, FloatingLabel, FormControl, Button,
+} from 'react-bootstrap';
+import axios from 'axios';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { useTranslation } from 'react-i18next';
 
-import routes from "../../../routes/routes";
-import useAuth from "../../../hooks/useAuth";
+import routes from '../../../routes/routes';
+import useAuth from '../../../hooks/useAuth';
+
+/* eslint-disable functional/no-expression-statements */
+/* eslint-disable consistent-return */
 
 const LoginForm = () => {
   const { t } = useTranslation();
@@ -16,25 +21,25 @@ const LoginForm = () => {
   const auth = useAuth();
 
   const [authFailed, setAuthFailed] = useState(false);
-  const authMessage = t("login.authFailed");
+  const authMessage = t('login.authFailed');
 
   const validationSchema = Yup.object().shape({
-    username: Yup.string().required(t("registration.required")),
-    password: Yup.string().required(t("registration.required")),
+    username: Yup.string().required(t('registration.required')),
+    password: Yup.string().required(t('registration.required')),
   });
 
   const formik = useFormik({
     validationSchema,
     initialValues: {
-      username: "",
-      password: "",
+      username: '',
+      password: '',
     },
     onSubmit: async (values) => {
       try {
         const response = await axios.post(routes.loginPath(), values);
-        localStorage.setItem("userId", JSON.stringify(response.data));
+        localStorage.setItem('userId', JSON.stringify(response.data));
         auth.logIn();
-        const { from } = location.state || { from: { pathname: "/" } };
+        const { from } = location.state || { from: { pathname: '/' } };
         navigate(from);
       } catch (err) {
         if (err.isAxiosError && err.response.status === 401) {
@@ -54,7 +59,7 @@ const LoginForm = () => {
       <h1 className="text-center mb-4">Войти</h1>
 
       <FloatingLabel
-        label={t("login.name")}
+        label={t('login.name')}
         controlId="username"
         className="mb-3"
       >
@@ -76,7 +81,7 @@ const LoginForm = () => {
       </FloatingLabel>
 
       <FloatingLabel
-        label={t("login.password")}
+        label={t('login.password')}
         controlId="password"
         className="mb-4"
       >
@@ -98,7 +103,7 @@ const LoginForm = () => {
       </FloatingLabel>
 
       <Button type="submit" variant="outline-primary" className="w-100 mb-3">
-        {t("login.enter")}
+        {t('login.enter')}
       </Button>
     </Form>
   );

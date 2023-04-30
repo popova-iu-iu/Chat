@@ -1,14 +1,15 @@
-/* eslint-disable no-param-reassign */
-import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
+import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
+/* eslint-disable functional/no-expression-statements */
+/* eslint-disable functional/no-conditional-statements */
 
-import { removeChannel } from "./channels";
+import { removeChannel } from './channels';
 
 const messagesAdapter = createEntityAdapter();
 
 const initialState = messagesAdapter.getInitialState();
 
 const messagesSlice = createSlice({
-  name: "messages",
+  name: 'messages',
   initialState,
   reducers: {
     addMessage: messagesAdapter.addOne,
@@ -28,7 +29,7 @@ const messagesSlice = createSlice({
 export const { addMessage, addMessages } = messagesSlice.actions;
 
 export const selectors = messagesAdapter.getSelectors(
-  (state) => state.messages
+  (state) => state.messages,
 );
 
 export default messagesSlice.reducer;

@@ -1,9 +1,9 @@
-import React, { Fragment } from "react";
-import { useSelector } from "react-redux";
+import React, { Fragment } from 'react';
+import { useSelector } from 'react-redux';
 
-import Add from "./Add";
-import Rename from "./Rename";
-import Remove from "./Remove";
+import Add from './Add';
+import Rename from './Rename';
+import Remove from './Remove';
 
 const ModalComponent = (props) => {
   const { type } = props;

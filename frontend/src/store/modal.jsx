@@ -1,5 +1,7 @@
+import { createSlice } from '@reduxjs/toolkit';
+/* eslint-disable functional/no-expression-statements */
+/* eslint-disable functional/no-conditional-statements */
 /* eslint-disable no-param-reassign */
-import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   type: null,
@@ -7,7 +9,7 @@ const initialState = {
 };
 
 const modalSlice = createSlice({
-  name: "modals",
+  name: 'modals',
   initialState,
   reducers: {
     open: (state, { payload }) => {

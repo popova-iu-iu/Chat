@@ -1,29 +1,29 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React from 'react';
+import { useSelector } from 'react-redux';
 
-import Header from "./components/Header/Header";
-import Body from "./components/Body/Body";
-import Footer from "./components/Footer/Footer";
+import Header from './components/Header/Header';
+import Body from './components/Body/Body';
+import Footer from './components/Footer/Footer';
 
-/* eslint  no-shadow: 0 */
+/* eslint-disable functional/no-expression-statements */
+/* eslint-disable functional/no-conditional-statements */
+/* eslint-disable max-len */
 
-import { selectors } from "../../../../store/messages";
-import { selectors as channelsSelectors } from "../../../../store/channels";
+import { selectors } from '../../../../store/messages';
+import { selectors as channelsSelectors } from '../../../../store/channels';
 
 const Messages = () => {
   const messages = Object.values(useSelector(selectors.selectAll));
 
   const currentChannelId = useSelector(
-    (state) => state.channels.currentChannelId
+    (state) => state.channels.currentChannelId,
   );
 
   const messagesInChat = messages.filter(
-    ({ channelId }) => channelId === currentChannelId
+    ({ channelId }) => channelId === currentChannelId,
   );
 
-  const currentChannel = useSelector((state) =>
-    channelsSelectors.selectById(state, currentChannelId)
-  );
+  const currentChannel = useSelector((state) => channelsSelectors.selectById(state, currentChannelId));
 
   return (
     <div className="col p-0 h-100">
