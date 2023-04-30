@@ -5,14 +5,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 import init from './init';
-/* eslint-disable */
 
 const app = async () => {
   const socket = io();
-  const root = ReactDOM.createRoot(document.getElementById("root"));
+  const root = ReactDOM.createRoot(document.getElementById('root'));
   const vdom = await init(socket);
   root.render(<React.StrictMode>{vdom}</React.StrictMode>);
 };
 
 app();
-/* eslint-disable */
