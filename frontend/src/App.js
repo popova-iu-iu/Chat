@@ -14,7 +14,7 @@ import Register from './pages/Register/Register';
 import Navigation from './components/Navigation/Navigation';
 
 import routes from './routes/routes';
-import AuthProvider from './AuthProvider';
+import AuthProvider from './context/AuthContext';
 import ChatApiProvider from './context/ChatApiContext';
 import useAuth from './hooks/useAuth';
 
