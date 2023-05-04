@@ -29,7 +29,7 @@ const RegistrationForm = () => {
     inputRef.current.focus();
   }, []);
 
-  const validationSchema = Yup.object().shape({
+  const validationSchema = Yup.object({
     username: Yup.string()
       .min(3, t('registration.minMax'))
       .max(20, t('registration.minMax'))
@@ -37,10 +37,13 @@ const RegistrationForm = () => {
     password: Yup.string()
       .min(6, t('registration.passwordLength'))
       .required(t('registration.required')),
-    passwordConfirm: Yup.string().oneOf(
-      [Yup.ref('password'), null],
-      t('registration.mustMatch'),
-    ),
+    passwordConfirm: Yup
+      .string()
+      .required(t('registration.required'))
+      .oneOf(
+        [Yup.ref('password'), null],
+        t('registration.mustMatch'),
+      ),
   });
 
   const formik = useFormik({
@@ -97,13 +100,14 @@ const RegistrationForm = () => {
       >
         <Form.Control
           name="username"
+          type="text"
           autoComplete="username"
           placeholder={t('registration.name')}
           ref={inputRef}
           value={values.username}
           onChange={onChange}
           isInvalid={
-            (touched.username && !!errors.username && existingUser)
+            (touched.username && !!errors.username || existingUser)
             || authFailed
           }
         />
