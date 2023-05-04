@@ -8,14 +8,15 @@ import { PlusSquare } from 'react-bootstrap-icons';
 import cn from 'classnames';
 import { useTranslation } from 'react-i18next';
 
-import { selectors, setCurrentChannelId } from '../../../../store/channels';
+import { selectors, setCurrentChannelId, getCurrentChannelId } from '../../../../store/channels';
 
 const Channels = ({ handleOpen }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const channels = useSelector(selectors.selectAll);
-  const { currentChannelId } = useSelector((state) => state.channels);
+  // const { currentChannelId } = useSelector((state) => state.channels);
+  const currentChannelId = useSelector(getCurrentChannelId);
 
   const channelsList = () => {
     const elements = channels.map(({ name, removable, id }) => {

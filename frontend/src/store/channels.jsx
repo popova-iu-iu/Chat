@@ -41,4 +41,6 @@ export const selectors = channelsAdapter.getSelectors(
   (state) => state.channels,
 );
 
+export const getCurrentChannelId = (state) => state.channels.currentChannelId
+
 export default channelsSlice.reducer;
