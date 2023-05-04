@@ -20,7 +20,7 @@ const Login = () => {
                 className="col-12 d-flex align-items-center justify-content-center"
                 md={6}
               >
-                <Image className="rounded-circle" src={img} alt="Enter" />
+                <Image className="rounded-circle" src={img} alt={t('login.enter')} />
               </Col>
               <LoginForm />
             </Card.Body>
