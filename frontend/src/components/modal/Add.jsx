@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 import leoProfanity from 'leo-profanity';
 
 import useChatApi from '../../hooks/useChatApi';
-import { selectors, getChannelsNames } from '../../store/channels';
+import { getChannelsNames } from '../../store/channels';
 
 const Add = ({ onHide }) => {
   const { t } = useTranslation();
