@@ -17,6 +17,9 @@ const Channels = ({ handleOpen }) => {
   const channels = useSelector(selectors.selectAll);
   const currentChannelId = useSelector(getCurrentChannelId);
 
+  const handleRename = (id) => handleOpen('renaming', id);
+  const handleRemove = (id) => handleOpen('removing', id);
+
   const channelsList = () => {
     const elements = channels.map(({ name, removable, id }) => {
       const btnClasses = cn('btn', {
@@ -24,9 +27,6 @@ const Channels = ({ handleOpen }) => {
       });
 
       const variant = id === currentChannelId ? 'secondary' : 'light';
-
-      const handleRename = (id) => handleOpen('renaming', id);
-      const handleRemove = (id) => handleOpen('removing', id);
 
       if (!removable) {
         return (
