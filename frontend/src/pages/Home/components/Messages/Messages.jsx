@@ -6,11 +6,11 @@ import Header from './components/Header/Header';
 import Body from './components/Body/Body';
 import Footer from './components/Footer/Footer';
 
-import { selectors } from '../../../../store/messages';
-import { getCurrentChannelId, getCurrentChannel, selectors as channelsSelectors } from '../../../../store/channels';
+import { getCurrentChannelId, getCurrentChannel } from '../../../../store/channels';
+import { getMessages } from '../../../../store/messages';
 
 const Messages = () => {
-  const messages = Object.values(useSelector(selectors.selectAll));
+  const messages = useSelector(getMessages);
 
   const currentChannelId = useSelector(getCurrentChannelId);
 
