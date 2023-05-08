@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 import leoProfanity from 'leo-profanity';
 
 import useChatApi from '../../hooks/useChatApi';
-import { selectors } from '../../store/channels';
+import { selectors, getChannelsNames } from '../../store/channels';
 
 const Add = ({ onHide }) => {
   const { t } = useTranslation();
@@ -20,9 +20,7 @@ const Add = ({ onHide }) => {
   const [show, setShow] = useState(true);
   const { newChannel } = useChatApi();
 
-  const channelsNames = useSelector(selectors.selectAll).map(
-    ({ name }) => name,
-  );
+  const channelsNames = useSelector(getChannelsNames);
 
   const handleClose = () => {
     setShow(false);
