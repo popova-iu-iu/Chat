@@ -15,7 +15,6 @@ const Channels = ({ handleOpen }) => {
   const dispatch = useDispatch();
 
   const channels = useSelector(selectors.selectAll);
-  // const { currentChannelId } = useSelector((state) => state.channels);
   const currentChannelId = useSelector(getCurrentChannelId);
 
   const channelsList = () => {

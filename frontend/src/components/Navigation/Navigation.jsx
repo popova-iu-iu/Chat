@@ -17,12 +17,13 @@ const LogOut = () => {
 
 const Navigation = () => {
   const { homePage } = routes;
+  const { t } = useTranslation();
 
   return (
     <Navbar bg="white" expand="lg" className="shadow-sm">
       <Container>
         <Link className="navbar-brand" to={homePage()}>
-          Hexlet Chat
+          {t('navigation.logo')}
         </Link>
         <LogOut />
       </Container>

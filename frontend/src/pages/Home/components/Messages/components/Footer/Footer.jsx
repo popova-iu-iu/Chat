@@ -8,6 +8,7 @@ import leoProfanity from 'leo-profanity';
 
 import { useSelector } from 'react-redux';
 import useChatApi from '../../../../../../hooks/useChatApi';
+import { getCurrentChannelId } from '../../../../../../store/channels';
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -15,9 +16,7 @@ const Footer = () => {
 
   const inputRef = useRef(null);
 
-  const currentChannelId = useSelector(
-    ({ channels }) => channels.currentChannelId,
-  );
+  const currentChannelId = useSelector(getCurrentChannelId);
 
   const { username } = JSON.parse(localStorage.getItem('userId'));
   const formik = useFormik({

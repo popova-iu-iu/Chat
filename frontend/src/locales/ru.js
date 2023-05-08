@@ -1,5 +1,8 @@
 const ru = {
   translation: {
+    navigation: {
+      logo: 'Hexlet Chat',
+    },
     login: {
       noAccaunt: 'Нет аккаунта?',
       registration: 'Регистрация',

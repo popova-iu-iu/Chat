@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 
 import useChatApi from '../../hooks/useChatApi';
 import { selectors } from '../../store/channels';
+import { getChannelId } from '../../store/modal';
 
 const Rename = ({ onHide }) => {
   const { t } = useTranslation();
@@ -19,7 +20,7 @@ const Rename = ({ onHide }) => {
   const [show, setShow] = useState(true);
 
   const channels = useSelector(selectors.selectAll);
-  const channelId = useSelector((state) => state.modal.channelId);
+  const channelId = useSelector(getChannelId);
 
   const channelsNames = channels.map(({ name }) => name);
   const currentChannel = channels.find((channel) => channel.id === channelId);

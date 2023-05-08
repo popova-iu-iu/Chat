@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
 import { useSelector } from 'react-redux';
 
+import { getModalType } from '../../store/modal';
+
 import Add from './Add';
 import Rename from './Rename';
 import Remove from './Remove';
@@ -19,7 +21,7 @@ const ModalComponent = (props) => {
 };
 
 const Modal = (props) => {
-  const type = useSelector(({ modal }) => modal.type);
+  const type = useSelector(getModalType);
 
   return (
     <>

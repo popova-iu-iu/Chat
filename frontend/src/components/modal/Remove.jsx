@@ -6,11 +6,12 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
 import useChatApi from '../../hooks/useChatApi';
+import { getChannelId } from '../../store/modal';
 
 const Remove = ({ onHide }) => {
   const { t } = useTranslation();
   const [show, setShow] = useState(true);
-  const channelId = useSelector(({ modal }) => modal.channelId);
+  const channelId = useSelector(getChannelId);
   const { deleteChannel } = useChatApi();
 
   const handleClose = () => {
